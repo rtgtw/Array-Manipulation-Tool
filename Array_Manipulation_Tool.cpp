@@ -58,8 +58,6 @@ void insertElement(struct Array* arr, int index, int value) {
 };
 
 
-//--------------------------------------------------------------------------------------//
-
 
 
 
@@ -88,7 +86,7 @@ void append(struct Array* arr, int x) {
 	}
 };
 
-//--------------------------------------------------------------------------------------//
+
 
 
 
@@ -140,9 +138,26 @@ int deleteElement(struct Array* arr, int index) {
 };
 
 
+
+
+
+
+//Get Index of Element
 //--------------------------------------------------------------------------------------//
 
+//Return the index at which the element is stored at
+int getIndex(struct Array arr, int element) {
 
+	//Use a for loop to iterate through the array's length
+	for (int i = 0; i < arr.length; i++) {
+
+		//if the element is equal, return the index
+		if (element == arr.A[i]) {
+			return i;
+		};
+
+	}
+};
 
 
 
@@ -207,12 +222,15 @@ int main() {
 
 
 
+
 	//Ask user at which index would they like to delete a value?
 	std::cout << "Enter the Index at which you would like to delete a value: ";
 	std::cin >> index;
 
 	//Delete Element
 	deleteElement(&array1, index);
+
+
 
 
 
