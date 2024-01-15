@@ -68,6 +68,41 @@ void insertElement(struct Array* arr, int index, int value) {
 
 
 
+//Append Element
+//--------------------------------------------------------------------------------------//
+
+//Inserts a new element at the end of the array
+//we will use a pointer as the parameter since we want to change the value by address
+void append(struct Array* arr, int x) {
+
+
+	// This verifies that there is room inside of the array
+	//if length = size then there is no room inside of the array
+	//Meaning we cannot perform the append logic
+	if (arr->length < arr->size) {
+		arr->A[arr->length++] = x;
+
+	}
+	else {
+		std::cout << "Error: not enough room inside of the array. Cannot perform operation" << '\n';
+	}
+};
+
+//--------------------------------------------------------------------------------------//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -101,6 +136,18 @@ int main() {
 
 	//Insert Element
 	insertElement(&array1, index, element);
+
+
+
+
+
+	//Ask user what value they would like to append to the existing array
+	std::cout << "Enter a value that you would like to append to the array: ";
+	std::cin >> element;
+
+	//Append Element
+	append(&array1, element);
+
 
 
 	//Display Element
