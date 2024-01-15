@@ -78,8 +78,8 @@ void append(struct Array* arr, int x) {
 	//if length = size then there is no room inside of the array
 	//Meaning we cannot perform the append logic
 	if (arr->length < arr->size) {
-		arr->A[arr->length++] = x;
-
+		arr->A[arr->length] = x;
+		arr->length++;
 	}
 	else {
 		std::cout << "Error: not enough room inside of the array. Cannot perform operation" << '\n';
@@ -134,6 +134,8 @@ int deleteElement(struct Array* arr, int index) {
 	};
 
 	//if the user enters an invalid index, return 1 instead to signify an error
+	std::cout << "Invalid Index. Please Try Again." << '\n';
+
 	return 1;
 };
 
@@ -154,10 +156,52 @@ int getIndex(struct Array arr, int element) {
 		//if the element is equal, return the index
 		if (element == arr.A[i]) {
 			return i;
-		};
-
+		}
+		
 	}
+		std::cout << "Element not found within this array. Try again";
+		return -1;
+		
 };
+
+
+
+
+
+
+
+//Swap Elements 
+//-------------------------------------------------------------------------------------//
+//Create a swap function to swap the values of two elements by address
+//This swap function is necessary to perform transposition or Move to Head logic on an array
+//to swap two elements after a search query in order to speed up performance
+void swapElements(int* x, int* y) {
+
+	int temp;
+
+	temp = *x;
+	
+	//very subtle blunder, i originally had *y = *x but it should be *x = *y
+	//since we want to store x in temp, and give x the value of y
+	*x = *y;
+
+	*y = temp;
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -181,7 +225,7 @@ int main() {
 	//Create variables
 	int index;
 	int element;
-
+	int element2;
 
 
 	//Ask user to input Array Size
@@ -202,6 +246,7 @@ int main() {
 	std::cout << "Enter an Index and Element to insert into array: ";
 	std::cin >> index;
 	std::cin >> element;
+	
 
 	//Insert Element
 	insertElement(&array1, index, element);
@@ -213,7 +258,7 @@ int main() {
 
 
 	//Ask user what value they would like to append to the existing array
-	std::cout << "Enter a Vlue that you would like to append to the array: ";
+	std::cout << "Enter a Value that you would like to append to the array: ";
 	std::cin >> element;
 
 	//Append Element
@@ -233,12 +278,34 @@ int main() {
 
 
 
+	//Ask user to enter an element to get its index
+	std::cout << "Enter a value within the array to obtain its index: ";
+	std::cin >> element;
 
+	//show the index
+	std::cout << getIndex(array1, element) << '\n' << '\n';
+
+
+
+
+
+	//Ask user to enter two elements to swap
+	//We will use the getIndex function, to find both indexes of the elements
+	//In order to pass elements in the swap functions parameters
+	//SwapElements function takes in the memory addresses in order to swap
+	std::cout << "Enter two elements to swap within the array: ";
+	std::cin >> element;
+	std::cin >> element2;
+	swapElements(&array1.A[getIndex(array1, element)], &array1.A[getIndex(array1, element2)]);
+
+	
+
+	
 
 
 
 	//Display Element
-	for (int i = 0; i < array1.size; i++) {
+	for (int i = 0; i < array1.length; i++) {
 		std::cout << array1.A[i] << '\n';
 	};
 
