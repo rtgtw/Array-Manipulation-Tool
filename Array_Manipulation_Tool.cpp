@@ -159,7 +159,7 @@ int getIndex(struct Array arr, int element) {
 		}
 		
 	}
-		std::cout << "Element not found within this array. Try again";
+		std::cout << "Element not found within this array. Try again" << '\n';
 		return -1;
 		
 };
@@ -178,6 +178,7 @@ int getIndex(struct Array arr, int element) {
 void swapElements(int* x, int* y) {
 
 	int temp;
+	
 
 	temp = *x;
 	
@@ -188,6 +189,106 @@ void swapElements(int* x, int* y) {
 	*y = temp;
 
 };
+
+
+
+
+//Set Elements 
+//-------------------------------------------------------------------------------------//
+//Set a value within an array
+//Since we are changing the values within the array, we have to use a pointer
+//We will use the int data type to return 0 for success and 1 for failure
+int setElement(struct Array* arr, int index, int set) {
+
+	//Checks if the index the user input is valid and within the bounds of the array
+	if (index >= 0 && index < arr->length) {
+
+		//stores the value of the user set at the specified index within the array
+		arr->A[index] = set;
+
+		//returns 0 to signify success
+		return 0;
+	}
+
+	std::cout << "Invalid Index. Try again";
+	//returns -1 to signify failure
+	return -1;
+};
+
+
+
+
+
+
+
+//Min Element
+//-------------------------------------------------------------------------------------//
+
+//Close to the same logic as max but instead we have a min variable
+//We use int data type since we are returning min
+int minElement(struct Array arr) {
+
+	//create a min variable that holds the first element within the array
+	int min = arr.A[0];
+
+	//create a for loop to iterate through the array starting at index 1, since 
+	//we stored index 0 and will use that value to check the other elements
+	for (int i = 1; i < arr.length; i++) {
+
+		//if the element at index i is less than min, then replace min with A[i]
+		if (arr.A[i] < min) {
+
+			min = arr.A[i];
+		};
+	};
+
+	//return min
+	return min;
+
+};
+
+
+
+
+
+
+//Max Element
+//-------------------------------------------------------------------------------------//
+//Get the max element within an array
+//int data type since we are returning the max value
+//only parameter is the array
+int maxElement(struct Array arr) {
+
+	//create a max variable that will start at the beginning of the array
+	int max = arr.A[0];
+
+	//since our max is already set to the value at the beginning of the array
+	//all is left is for us to check that value with every other element in the array
+	//which will take O(n), this is the only way with an unsorted array,
+	//If the array was sorted then we would take the value of length - 1
+	for (int i = 1; i < arr.length; i++) {
+
+		//if we find a value that is greater than max, then we change max to the new value
+		//at that specific index
+		if (arr.A[i] > max) {
+
+			max = arr.A[i];
+		};
+	}
+
+	return max;
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -301,6 +402,27 @@ int main() {
 	
 
 	
+
+
+	//Ask the user to enter an Index and Element to set value
+	std::cout << "Set an element by entering the Index and new Element Value: ";
+	std::cin >> index;
+	std::cin >> element;
+	setElement(&array1, index, element);
+
+
+
+
+
+
+	//Find the min element
+	std::cout << "Min Element is: " << minElement(array1) << '\n' << '\n';
+
+
+
+	//Find the max element
+	std::cout << "Max Element is: " << maxElement(array1) << '\n' << '\n';
+
 
 
 
