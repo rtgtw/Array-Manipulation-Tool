@@ -4,8 +4,7 @@
 
 
 
-
-
+//Create an array structure with an int pointer, and size and length of the array as member variables
 struct Array {
 
 	int* A;
@@ -13,3 +12,6 @@ struct Array {
 	int length;
 };
 
+
+
+//--------------------------------------------------------------------------------------//
